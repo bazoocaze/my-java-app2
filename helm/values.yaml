@@ -31,12 +31,13 @@ readinessProbe:
   failureThreshold: 2
 
 ingress:
-  enabled: false
+  enabled: true
   className: "nginx"
-  annotations: {}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
   hosts:
     - host: localhost
       paths:
-        - path: /
-          pathType: Prefix
+        - path: /my-java-app2(/|$)(.*)
+          pathType: ImplementationSpecific
   tls: []
